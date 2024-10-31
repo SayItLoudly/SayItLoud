@@ -16,7 +16,7 @@ body {
     color: #333;
 }
 
-/* Container styling for a centered card layout */
+/* Container styling for a centered card layout with extra ad space */
 .container {
     background-color: #ffffff;
     padding: 30px;
@@ -26,6 +26,8 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
     transition: transform 0.3s ease;
+    position: relative;
+    min-height: 750px; /* Increased height to add space for the ad */
 }
 
 .container:hover {
@@ -128,4 +130,17 @@ input[type="range"]::-moz-range-thumb {
 #speedValue, #pauseValue, #pitchValue {
     color: #374785;
     font-weight: bold;
+}
+
+/* Ad space styling at the bottom of the container */
+.ad-space {
+    width: 100%;
+    height: 100px; /* Adjust as needed */
+    background-color: #f9f9f9;
+    border-top: 1px solid #b3cde0;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
 }
