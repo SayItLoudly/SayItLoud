@@ -5,6 +5,18 @@ let speed = 1; // Default speaking speed
 let pauseDurationPerLetter = 250; // Default pause duration per letter
 let pitch = 1; // Default pitch
 
+function startOrRestart() {
+    const startRestartBtn = document.getElementById("startRestartBtn");
+
+    // Check if the button is in "Start" or "Restart" mode
+    if (startRestartBtn.textContent === "Start") {
+        startRestartBtn.textContent = "Restart";  // Change button text to "Restart" after the first click
+        speak();  // Start speaking
+    } else {
+        restart();  // Restart from the beginning if it's already in "Restart" mode
+    }
+}
+
 function speak() {
     const paragraph = document.getElementById("text").value;
     words = paragraph.split(" ");
@@ -20,14 +32,13 @@ function speakWord() {
         const word = words[index];
         utterance = new SpeechSynthesisUtterance(formatWord(word));
         utterance.rate = speed;
-        utterance.pitch = pitch; // Set the pitch
+        utterance.pitch = pitch;
         utterance.lang = 'en-US';
 
         synth.speak(utterance);
 
-        // Determine pause based on punctuation and word length
         const punctuationPause = (word.includes(".") || word.includes(",")) ? 600 : 300;
-        const pauseDuration = word.length * pauseDurationPerLetter; // Use the pause duration per letter
+        const pauseDuration = word.length * pauseDurationPerLetter;
 
         utterance.onend = function() {
             index++;
@@ -75,7 +86,7 @@ function rereadLastTwoWords() {
 }
 
 function updateSpeed() {
-    speed = document.getElementById("speedSlider").value / 150; // Normalize speed (1.2 is 120 wpm)
+    speed = document.getElementById("speedSlider").value / 150;
     document.getElementById("speedValue").textContent = document.getElementById("speedSlider").value;
 }
 
